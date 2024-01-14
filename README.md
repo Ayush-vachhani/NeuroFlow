@@ -10,5 +10,4 @@ Flexible Backend: Robust and scalable backend in Django, capable of handling com
 Technology Stack
 Frontend: SvelteKit
 Backend: Django (Python)
-Data Visualization: [Libraries or tools used for graphs]
-Neural Network Framework: [TensorFlow, PyTorch, or other ML libraries]
+Neural Network Framework: PyTorch, scikit - learn
