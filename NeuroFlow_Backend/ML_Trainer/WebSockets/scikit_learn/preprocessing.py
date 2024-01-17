@@ -1,4 +1,7 @@
+import json
 import pandas as pd
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 
 
 def preprocess_data(df, is_train=True):
@@ -17,3 +20,23 @@ def preprocess_data(df, is_train=True):
         return X, Y
     else:
         return df_processed, None
+
+
+async def train_and_evaluate_classifier(self, classifier, params):
+    df = pd.read_csv('Data/Titanic/train.csv')
+
+    # Preprocess the data
+    X, Y = preprocess_data(df)
+
+    # Split the data into training and validation sets
+    X_train, X_val, Y_train, Y_val = train_test_split(X, Y, test_size=0.2)
+    # Initialize and train the model
+    model = classifier(**params)
+    model.fit(X_train, Y_train)
+
+    # Evaluate the model
+    accuracy = accuracy_score(Y_val, model.predict(X_val))
+    await self.send(text_data=json.dumps({
+        'message': f'Trained and tested model with accuracy: {accuracy}'
+    }))
+    print(f'Trained and tested model with accuracy: {accuracy}')

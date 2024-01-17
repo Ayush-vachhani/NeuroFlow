@@ -1,9 +1,11 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json
-from .Classifiers.RandomForests import train_random_forest
-from .Classifiers.DecisionTrees import train_decision_trees
-from .Classifiers.LogisticRegression import train_logistic_regression
-from .Classifiers.SVM import train_svg
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from .preprocessing import train_and_evaluate_classifier
+
 
 class YourConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -19,14 +21,15 @@ class YourConsumer(AsyncWebsocketConsumer):
         parameters = text_data_json.get('parameters')
         classifier = text_data_json.get('classifier')
 
-        print(f"\033[92mReceived classifier: {classifier}\033[0m")
+        print(f"\033[92m Received classifier: {classifier}\033[0m")
 
         if command == 'Train and Test':
-            if classifier == 'RandomForest':
-                await train_random_forest(self, parameters)
-            elif classifier == 'DecisionTrees':
-                await train_decision_trees(self, parameters)
-            elif classifier == 'LogisticRegression':
-                await train_logistic_regression(self, parameters)
-            elif classifier == 'SVM':
-                await train_svg(self, parameters)
+            await train_and_evaluate_classifier(self, classifiers_map[classifier], parameters)
+
+
+classifiers_map = {
+    'RandomForest': RandomForestClassifier,
+    'DecisionTrees': DecisionTreeClassifier,
+    'LogisticRegression': LogisticRegression,
+    'SupportVectorMachine': SVC
+}
