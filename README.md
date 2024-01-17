@@ -1,13 +1,28 @@
-NEUROFLOW
-Introduction
-This application offers an intuitive and interactive way to build and train neural network models. It is designed to simplify the process of configuring neural networks and visualizing their training progress in real-time. The GUI, built with SvelteKit, allows users to select neural network architectures, including the number of layers, number of neurons, and activation functions. During the training phase, users can observe real-time graphs showing various metrics such as loss and accuracy.
+NEUROFLOW: An Intuitive Neural Network Training Application
 
-Features
-Neural Network Configuration: Easily configure the structure of your neural network, including the number of layers, neurons, and activation functions.
-Real-Time Training Insights: View real-time updates of training metrics like loss and accuracy through interactive graphs.
-User-Friendly Interface: A clean and intuitive GUI built with SvelteKit for seamless user experience.
-Flexible Backend: Robust and scalable backend in Django, capable of handling complex neural network operations.
-Technology Stack
+Introduction:
+NEUROFLOW is an application designed to offer an intuitive and interactive way of building and training neural network models. It simplifies the process of neural network configuration and enables real-time visualization of training progress. The user-friendly GUI, built with SvelteKit, provides options for selecting neural network architectures, adjusting the number of layers and neurons, and choosing activation functions. During training, users can monitor metrics such as loss and accuracy through real-time graphs.
+
+Features:
+
+Neural Network Configuration:
+
+Configure the structure of your neural network with ease.
+Options include setting the number of layers, neurons, and activation functions.
+Real-Time Training Insights:
+
+Observe real-time updates on training metrics.
+Interactive graphs display metrics like loss and accuracy.
+User-Friendly Interface:
+
+Clean and intuitive GUI built with SvelteKit.
+Ensures a seamless user experience.
+Flexible Backend:
+
+Robust and scalable Django backend.
+Capable of handling complex neural network operations efficiently.
+Technology Stack:
+
 Frontend: SvelteKit
 Backend: Django (Python)
-Neural Network Framework: PyTorch, scikit - learn
+Neural Network Framework: PyTorch, scikit-learn
