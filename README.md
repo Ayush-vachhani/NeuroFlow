@@ -6,21 +6,17 @@ NEUROFLOW is an application designed to offer an intuitive and interactive way o
 Features:
 
 Neural Network Configuration:
+Configure the structure of your neural network with ease. Options include setting the number of layers, neurons, and activation functions.
 
-Configure the structure of your neural network with ease.
-Options include setting the number of layers, neurons, and activation functions.
 Real-Time Training Insights:
+Observe real-time updates on training metrics. Interactive graphs display metrics like loss and accuracy.
 
-Observe real-time updates on training metrics.
-Interactive graphs display metrics like loss and accuracy.
 User-Friendly Interface:
+Clean and intuitive GUI built with SvelteKit. Ensures a seamless user experience.
 
-Clean and intuitive GUI built with SvelteKit.
-Ensures a seamless user experience.
 Flexible Backend:
+Robust and scalable Django backend. Capable of handling complex neural network operations efficiently.
 
-Robust and scalable Django backend.
-Capable of handling complex neural network operations efficiently.
 Technology Stack:
 
 Frontend: SvelteKit
