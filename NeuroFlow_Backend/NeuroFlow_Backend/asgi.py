@@ -1,16 +1,21 @@
-"""
-ASGI config for NeuroFlow_Backend project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.2/howto/deployment/asgi/
-"""
-
 import os
-
 from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from django.urls import path
+from ML_Trainer.WebSockets.scikit_learn import consumer
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NeuroFlow_Backend.settings')
 
-application = get_asgi_application()
+websocket_urlpatterns = [
+    path('ws/scikit_learn_socket', consumer.YourConsumer.as_asgi()),
+]
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    'websocket': AuthMiddlewareStack(
+        URLRouter(
+            websocket_urlpatterns
+        )
+    ),
+})

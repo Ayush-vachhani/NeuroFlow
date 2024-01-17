@@ -9,15 +9,19 @@ SECRET_KEY = 'django-insecure-%pd))4v94=lu-*69vr-s6q6)-=!k9fz1&zjuy1)oyxig-mmsdt
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'channels',
+    'drf_spectacular',
+    'livereload',
 ]
 
 MIDDLEWARE = [
@@ -28,6 +32,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'NeuroFlow_Backend.urls'
@@ -47,7 +52,7 @@ TEMPLATES = [
         },
     },
 ]
-
+ASGI_APPLICATION = 'NeuroFlow_Backend.asgi.application'
 WSGI_APPLICATION = 'NeuroFlow_Backend.wsgi.application'
 
 
@@ -102,3 +107,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}

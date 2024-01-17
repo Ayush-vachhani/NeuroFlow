@@ -2,14 +2,22 @@ import csv
 from django.shortcuts import render
 import os.path
 from pathlib import Path
+import pandas as pd
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def index(request):
-    file_path = 'Data/Titanic/train.csv'  # Update this to your CSV file path
-    with open(file_path, newline='', encoding='utf-8') as csvfile:
-        reader = csv.reader(csvfile)
-        columns = next(reader)  # This reads the first line which is typically the header
-
-    return render(request, 'index.html', {'columns': columns})
+class CSVColumnsView(APIView):
+    @classmethod
+    def get(cls, request):
+        try:
+            # Load the CSV file
+            df = pd.read_csv('Data/Titanic/train.csv')
+            # Get the columns as a list
+            columns = df.columns.tolist()
+            # Directly return the data as a response
+            return Response({"columns": columns})
+        except FileNotFoundError:
+            return Response({"error": "File not found"}, status=404)
