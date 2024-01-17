@@ -21,10 +21,3 @@ Technology Stack:
 
 Frontend: SvelteKit
 Backend: Django (Python)
-<<<<<<< HEAD
-Neural Network Framework: PyTorch, scikit-learn
-=======
-<<<<<<< HEAD
-Neural Network Framework: PyTorch, scikit-learn
-=======
-Neural Network Framework: PyTorch, scikit-learn
