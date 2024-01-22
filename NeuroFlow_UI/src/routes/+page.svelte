@@ -1,10 +1,11 @@
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte';
-    import {urls} from "../stores/urls.ts";
+    import {urls} from "$lib/stores/urls.ts";
     import type {WebSocketEvents} from "vitest"
-    import {trainAndTestModel} from "../Functions/Send";
+    import {trainAndTestModel} from "$lib/Functions/Send";
     import ClassificationSideBar from "$lib/ClassificationSideBar.svelte";
     import {classifiers} from "$lib/Shared/BinaryClassifiers";
+    import WebSocketComponent from "$lib/WebSocketHandler/WebSocketComponent.svelte";
     let websocket: WebSocket;
     let message:string = null;
 
@@ -47,7 +48,7 @@
         }
     });
 </script>
-
+<!--<WebSocketComponent bind:websocket={websocket} url={$urls.scikitlearn_socket}/>-->
 <div class="flex h-screen">
     <ClassificationSideBar bind:{classificationTask} = {classificationTask}/>
     <!-- Main Content -->
