@@ -13,8 +13,9 @@ class YourConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        action = text_data_json.get('action')
+        nn_structure = text_data_json.get('hidden_layers')
+        epochs = text_data_json.get('epochs')
+        split = text_data_json.get('split')
+        print(text_data)
 
-        if action == 'start_training':
-            await train_network(self)
-
+        await train_network(self, nn_structure, epochs, split)
