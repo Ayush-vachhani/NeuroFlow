@@ -2,7 +2,7 @@
     import { onMount, getContext } from "svelte";
     import * as echarts from 'echarts';
     import  WebSocketComponent  from "$lib/WebSocketHandler/WebSocketComponent.svelte";
-    import { urls } from "$lib/stores/urls.js";
+    import { urls } from "$lib/stores/urls";
 
     let chartContainer1, chartContainer2;
     let chartInstance1, chartInstance2;
