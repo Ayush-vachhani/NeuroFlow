@@ -34,7 +34,7 @@ class DynamicNet(nn.Module):
     def forward(self, x):
         for i, layer in enumerate(self.layers):
             if i < len(self.layers) - 1:
-                x = F.relu(layer(x))
+                x = F.tanh(layer(x))
             else:
                 x = torch.sigmoid(layer(x))
         return x
