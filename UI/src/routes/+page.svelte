@@ -2,28 +2,33 @@
     import {urls} from "$lib/stores/urls.ts";
     import {classifiers} from "$lib/shared/BinaryClassifiers";
     import WebSocketComponent from "$lib/WebSocketHandler/WebSocketComponent.svelte";
-    let message:string = null;
+
+    let message: string = null;
+
     interface Socket {
-      sendMessage: (message: string) => object;
+        sendMessage: (message: string) => object;
     }
+
     let socket: Socket;
     let classificationTask = 'RandomForest';
-    function handleTrainAndTest(event: Event) {
-      const formData = new FormData(event.target as HTMLFormElement);
-      const parameters = {};
-      for (let [key, value] of formData.entries()) {
-        parameters[key] = isNaN(Number(value)) ? value : Number(value);
-      }
-      const classifier = classificationTask;
 
-      socket.sendMessage(JSON.stringify({parameters, classifier}));
+    function handleTrainAndTest(event: Event) {
+        const formData = new FormData(event.target as HTMLFormElement);
+        const parameters = {};
+        for (let [key, value] of formData.entries()) {
+            parameters[key] = isNaN(Number(value)) ? value : Number(value);
+        }
+        const classifier = classificationTask;
+
+        socket.sendMessage(JSON.stringify({parameters, classifier}));
     }
+
     function handleSelection(classifier) {
         classificationTask = classifier;
     }
 </script>
 
-<WebSocketComponent bind:this={socket} url={$urls.scikitlearn_socket} />
+<WebSocketComponent bind:this={socket} url={$urls.scikitlearn_socket}/>
 <div class="flex h-screen">
     <div class="sidebar bg-base-200 w-1/4">
         <ul class="menu p-4 overflow-y-auto w-full bg-base-100 text-base-content">
@@ -40,7 +45,7 @@
     </div>
     <div class="w-3/4 p-4">
         <h2 class="text-xl font-bold mb-4">{classificationTask.replace(/([A-Z])/g, ' $1').trim()}</h2>
-        <form on:submit|preventDefault={handleTrainAndTest} class="form-control">
+        <form class="form-control" on:submit|preventDefault={handleTrainAndTest}>
             {#each classifiers[classificationTask].params as param}
                 <div class="mb-4 form-control">
                     <label class="label">
@@ -49,7 +54,7 @@
                     <input type="text" class="input input-bordered w-full" name={param}/>
                 </div>
             {/each}
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
         {#if message}
             <div class="alert alert-info mt-4">{message}</div>
