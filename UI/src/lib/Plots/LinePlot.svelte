@@ -3,7 +3,7 @@
     import * as echarts from "echarts";
     let chartContainer;
     let chartInstance;
-    export let data;
+    export let data = {};
     export let lineColor;
     export let lineName;
 
@@ -29,6 +29,7 @@
                     data: data.main,
                     type: 'line',
                     name: lineName,
+                    smooth:true,
                     itemStyle: { color: lineColor },
                 }],
                 tooltip: {

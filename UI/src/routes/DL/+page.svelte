@@ -1,15 +1,18 @@
 <script lang="ts">
     import { urls } from "$lib/stores/urls";
-    import {onMount} from "svelte";
     import Rectangle from "$lib/SVG/Shapes/Rectangle.svelte";
     import WebSocketComponent from "$lib/WebSocketHandler/WebSocketComponent.svelte";
     import LinePlot from "$lib/Plots/LinePlot.svelte";
 
     let HiddenLayers = [{ No_of_Circles: 4 }, { No_of_Circles: 4 }];
-    let data = { epochs: [], trainAccuracy: [], testAccuracy: [], loss: [] };
+    let data = { epochs: [], trainAccuracy: [], testAccuracy: [], loss: [], Precision: [], Recall: [], F1Score: [] };
     let plotDataLoss = { x: data.epochs, main: data.loss };
     let plotDataTrainAccuracy = { x: data.epochs, main: data.trainAccuracy };
     let plotDataTestAccuracy = { x: data.epochs, main: data.testAccuracy };
+    let plotPrecision = { x: data.epochs, main: data.Precision };
+    let plotRecall = { x: data.epochs, main: data.Recall };
+    let plotF1Score = { x: data.epochs, main: data.F1Score };
+    let selectedLossFunction = 'BCELoss';
     
     interface Socket {
         sendMessage: (message: string) => object;
@@ -24,15 +27,21 @@
         data.trainAccuracy.push(message["Train_Accuracy"] * 100);
         data.testAccuracy.push(message["Test_Accuracy"] * 100);
         data.loss.push(message["Loss"]);
-        
+        data.Precision.push(message["Precision"] * 100);
+        data.Recall.push(message["Recall"] * 100);
+        data.F1Score.push(message["F1_Score"] * 100);
+
         plotDataLoss = { ...plotDataLoss };
         plotDataTrainAccuracy = { ...plotDataTrainAccuracy };
         plotDataTestAccuracy = { ...plotDataTestAccuracy };
-        console.log(plotDataLoss)
+        plotPrecision = { ...plotPrecision };
+        plotRecall = { ...plotRecall };
+        plotF1Score = { ...plotF1Score };
+
     }
     
     function startTraining() {
-        socket.sendMessage(JSON.stringify({ type: "start_training", hidden_layers: HiddenLayers, split: trainTestSplit, epochs: numEpochs }));
+        socket.sendMessage(JSON.stringify({ type: "start_training", hidden_layers: HiddenLayers, split: trainTestSplit, epochs: numEpochs, loss_function: selectedLossFunction }));
     }
 </script>
 <WebSocketComponent bind:this={socket} on:message={handleMessage} url={$urls.torch_socket} />
@@ -53,6 +62,9 @@
     <LinePlot bind:data={plotDataLoss} lineColor="red" lineName="Loss" />
     <LinePlot bind:data={plotDataTrainAccuracy} lineColor="yellow" lineName="Train Accuracy" />
     <LinePlot bind:data={plotDataTestAccuracy} lineColor="blue" lineName="Test Accuracy" />
+    <LinePlot bind:data={plotPrecision} lineColor="green" lineName="Precision" />
+    <LinePlot bind:data={plotRecall} lineColor="purple" lineName="Recall" />
+    <LinePlot bind:data={plotF1Score} lineColor="orange" lineName="F1 Score" />
 </div>
 
 <div class="slider-container py-4">
@@ -65,3 +77,13 @@
     <div class="text-xs mt-1">Epochs: {numEpochs}</div>
 </div>
 <button class="btn btn-accent" on:click={startTraining}>Start Training</button>
+<div class="form-control">
+    <label class="label">
+        <span class="label-text">Select Loss Function</span>
+    </label>
+    <select bind:value={selectedLossFunction} class="select select-bordered w-full max-w-xs">
+        <option value="BCELoss">BCE Loss</option>
+        <option value="CrossEntropyLoss">Cross Entropy Loss</option>
+    </select>
+
+</div>
