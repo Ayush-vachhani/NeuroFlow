@@ -15,6 +15,7 @@
         };
 
         websocket.onmessage = (event: WebSocketEvents) => {
+            console.log('WebSocket message received:', event.data)
             dispatch('message', event.data);
         };
 

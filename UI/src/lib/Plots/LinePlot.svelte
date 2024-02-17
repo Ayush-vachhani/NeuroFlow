@@ -1,41 +1,45 @@
 <script>
-    import {onMount} from "svelte";
+    import { onMount } from 'svelte';
     import * as echarts from "echarts";
-
     let chartContainer;
     let chartInstance;
-    export let data ;
+    export let data;
     export let lineColor;
     export let lineName;
-    onMount(() => {
+
+    onMount(async () => {
         chartInstance = echarts.init(chartContainer);
+        updateChart();
     });
+
     function updateChart() {
-        chartInstance.setOption({
-            xAxis: {
-                type: 'category',
-                data: data.x
-            },
-            yAxis: {
-                type: 'value',
-                axisLabel: {
-                    formatter: '{value}'
+        if (chartInstance) {
+            chartInstance.setOption({
+                xAxis: {
+                    type: 'category',
+                    data: data.x
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}'
+                    }
+                },
+                series: [{
+                    data: data.main,
+                    type: 'line',
+                    name: lineName,
+                    itemStyle: { color: lineColor },
+                }],
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: [lineName]
                 }
-            },
-            series: [{
-                data: data.main,
-                type: 'line',
-                name: lineName,
-                itemStyle: { color: lineColor },
-            }],
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: [lineName]
-            }
+            });
         }
-    )}
+    }
     $: if (chartInstance) {
         updateChart(data);
     }

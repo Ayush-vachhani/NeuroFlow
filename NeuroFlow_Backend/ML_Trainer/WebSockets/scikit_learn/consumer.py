@@ -23,8 +23,8 @@ class YourConsumer(AsyncWebsocketConsumer):
 
         print(f"\033[92m Received classifier: {classifier}\033[0m")
 
-        if command == 'Train and Test':
-            await train_and_evaluate_classifier(self, classifiers_map[classifier], parameters)
+        # if command == 'Train and Test':
+        await train_and_evaluate_classifier(self, classifiers_map[classifier], parameters)
 
 
 classifiers_map = {

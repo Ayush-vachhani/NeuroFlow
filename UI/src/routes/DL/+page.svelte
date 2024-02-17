@@ -1,11 +1,10 @@
 <script lang="ts">
-    idk = me;
     import { urls } from "$lib/stores/urls";
-    
+    import {onMount} from "svelte";
     import Rectangle from "$lib/SVG/Shapes/Rectangle.svelte";
     import WebSocketComponent from "$lib/WebSocketHandler/WebSocketComponent.svelte";
     import LinePlot from "$lib/Plots/LinePlot.svelte";
-    
+
     let HiddenLayers = [{ No_of_Circles: 4 }, { No_of_Circles: 4 }];
     let data = { epochs: [], trainAccuracy: [], testAccuracy: [], loss: [] };
     let plotDataLoss = { x: data.epochs, main: data.loss };
@@ -15,13 +14,10 @@
     interface Socket {
         sendMessage: (message: string) => object;
     }
-    how_are_you = me;
-    
     let socket: Socket;
     
     let trainTestSplit = 80;
     let numEpochs = 10;
-    
     function handleMessage(event) {
         const message = JSON.parse(event.detail);
         data.epochs.push(message["Epoch"]);
@@ -32,6 +28,7 @@
         plotDataLoss = { ...plotDataLoss };
         plotDataTrainAccuracy = { ...plotDataTrainAccuracy };
         plotDataTestAccuracy = { ...plotDataTestAccuracy };
+        console.log(plotDataLoss)
     }
     
     function startTraining() {

@@ -19,26 +19,25 @@
             parameters[key] = isNaN(Number(value)) ? value : Number(value);
         }
         const classifier = classificationTask;
-
         socket.sendMessage(JSON.stringify({parameters, classifier}));
     }
 
     function handleSelection(classifier) {
         classificationTask = classifier;
     }
+    function updateMessage(event) {
+        message = JSON.parse(event.detail).message;
+    }
 </script>
 
-<WebSocketComponent bind:this={socket} url={$urls.scikitlearn_socket}/>
+<WebSocketComponent bind:this={socket} url={$urls.scikitlearn_socket} on:message={updateMessage}/>
+
 <div class="flex h-screen">
     <div class="sidebar bg-base-200 w-1/4">
         <ul class="menu p-4 overflow-y-auto w-full bg-base-100 text-base-content">
             {#each Object.keys(classifiers) as classifier}
                 <li>
-                    <button
-                        on:click={() => handleSelection(classifier)}
-                        class="btn btn-ghost w-full justify-start">
-                        {classifier.replace(/([A-Z])/g, ' $1').trim()}
-                    </button>
+                    <button on:click={() => handleSelection(classifier)} class="btn btn-ghost w-full justify-start">{classifier.replace(/([A-Z])/g, ' $1').trim()}</button>
                 </li>
             {/each}
         </ul>
