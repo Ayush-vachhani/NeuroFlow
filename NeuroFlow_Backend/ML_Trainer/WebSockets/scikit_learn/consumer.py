@@ -7,7 +7,7 @@ from sklearn.svm import SVC
 from .preprocessing import train_and_evaluate_classifier
 
 
-class YourConsumer(AsyncWebsocketConsumer):
+class ScikitLearnSocket(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
 
@@ -20,7 +20,6 @@ class YourConsumer(AsyncWebsocketConsumer):
         command = text_data_json.get('command')
         parameters = text_data_json.get('parameters')
         classifier = text_data_json.get('classifier')
-
         print(f"\033[92m Received classifier: {classifier}\033[0m")
 
         # if command == 'Train and Test':
