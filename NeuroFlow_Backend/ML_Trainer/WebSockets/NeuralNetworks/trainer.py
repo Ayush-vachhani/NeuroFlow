@@ -3,7 +3,7 @@ import json
 from .Network import train_network
 
 
-class YourConsumer(AsyncWebsocketConsumer):
+class TorchTrainer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
 
@@ -16,6 +16,7 @@ class YourConsumer(AsyncWebsocketConsumer):
         nn_structure = text_data_json.get('hidden_layers')
         epochs = text_data_json.get('epochs')
         split = text_data_json.get('split')
+        loss_function = text_data_json.get('loss_function')
         print(text_data)
 
-        await train_network(self, nn_structure, epochs, split)
+        await train_network(self, nn_structure, epochs, split, loss_function)

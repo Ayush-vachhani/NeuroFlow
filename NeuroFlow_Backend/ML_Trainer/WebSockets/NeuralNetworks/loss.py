@@ -1,4 +1,5 @@
-import torch
+import torch.nn
+from torch import nn
 
 
 def calculate_accuracy(y_true, y_pred):
@@ -13,3 +14,9 @@ def calculate_binary_accuracy(y_true, y_pred):
     correct_results_sum = (y_pred_tag == y_true).float().sum()
     accuracy = correct_results_sum / y_true.shape[0]
     return accuracy
+
+
+loss_functions_map = {
+    'BCELoss': nn.BCELoss,
+    'CrossEntropyLoss': nn.CrossEntropyLoss,
+}
