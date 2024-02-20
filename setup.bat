@@ -21,4 +21,3 @@ pip install -r requirements.txt
 CALL .venv\Scripts\deactivate.bat
 
 echo Setup completed.
-pause
