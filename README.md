@@ -25,3 +25,11 @@ NEUROFLOW is an application designed to offer an intuitive and interactive way o
 - **Frontend:** SvelteKit
 - **Backend:** Django (Python)
 - **Neural Network Framework:** PyTorch, scikit-learn
+
+### Setup:
+- **Make sure you have latest version of node and python installed** 
+- **Run setup.bat or setup.sh file depending on your os.**
+
+### Running application:
+- **After setup is complete execute the run.bat or run.sh depending on your os.**
+
