@@ -1,6 +1,3 @@
-import csv
-from django.shortcuts import render
-import os.path
 from pathlib import Path
 import pandas as pd
 from rest_framework.views import APIView
