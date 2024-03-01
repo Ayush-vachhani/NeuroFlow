@@ -7,7 +7,7 @@ from torch import nn, optim
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from ML_Trainer.WebSockets.scikit_learn.preprocessing import preprocess_data
+from NeuroFlow_Backend.WebSockets.scikit_learn.preprocessing import preprocess_data
 from .loss import calculate_binary_accuracy, loss_functions_map
 from sklearn.metrics import precision_score, recall_score, f1_score
 
