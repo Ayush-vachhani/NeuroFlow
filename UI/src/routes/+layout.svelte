@@ -2,4 +2,4 @@
     import "tailwindcss/tailwind.css";
 </script>
 
-<slot />
+<slot/>

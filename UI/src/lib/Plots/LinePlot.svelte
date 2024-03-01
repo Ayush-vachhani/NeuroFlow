@@ -1,6 +1,7 @@
 <script>
-    import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
     import * as echarts from "echarts";
+
     let chartContainer;
     let chartInstance;
     export let data = {};
@@ -29,8 +30,8 @@
                     data: data.main,
                     type: 'line',
                     name: lineName,
-                    smooth:true,
-                    itemStyle: { color: lineColor },
+                    smooth: true,
+                    itemStyle: {color: lineColor},
                 }],
                 tooltip: {
                     trigger: 'axis'
@@ -41,8 +42,9 @@
             });
         }
     }
+
     $: if (chartInstance) {
-        updateChart(data);
+        updateChart();
     }
 </script>
 <div bind:this={chartContainer} class="chart-container"></div>

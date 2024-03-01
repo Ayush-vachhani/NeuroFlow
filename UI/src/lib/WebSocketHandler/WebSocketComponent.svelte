@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+    import {createEventDispatcher, onMount} from 'svelte';
+
     export let url: string;
-    import type {WebSocketEvents} from "vitest";
-    
+
     const dispatch = createEventDispatcher();
     let websocket: WebSocket;
 
@@ -14,28 +14,27 @@
             dispatch('open', {});
         };
 
-        websocket.onmessage = (event: WebSocketEvents) => {
+        websocket.onmessage = (event) => {
             console.log('WebSocket message received:', event.data)
             dispatch('message', event.data);
         };
 
-        websocket.onerror = (error: WebSocketEvents) => {
+        websocket.onerror = (error) => {
             console.error('WebSocket error:', error);
             dispatch('error', error);
         };
 
-        websocket.onclose = (event: WebSocketEvents) => {
+        websocket.onclose = (event) => {
             console.log('WebSocket connection closed:', event);
             dispatch('close', event);
         };
     });
-    
+
 
     export const sendMessage = (message: string) => {
         if (websocket && websocket.readyState === WebSocket.OPEN) {
             websocket.send(message);
-        }
-        else{
+        } else {
             alert("Websocket is not connected")
         }
     }
