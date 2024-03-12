@@ -21,7 +21,7 @@
     let socket: Socket;
 
     let trainTestSplit = 80;
-    let numEpochs = 10;
+    let numEpochs = 5;
 
     function handleMessage(event) {
         const message = JSON.parse(event.detail);
@@ -33,13 +33,13 @@
         data.Recall.push(message["Recall"] * 100);
         data.F1Score.push(message["F1_Score"] * 100);
 
+        data = {...data};
         plotDataLoss = {...plotDataLoss};
         plotDataTrainAccuracy = {...plotDataTrainAccuracy};
         plotDataTestAccuracy = {...plotDataTestAccuracy};
         plotPrecision = {...plotPrecision};
         plotRecall = {...plotRecall};
         plotF1Score = {...plotF1Score};
-
     }
 
     function startTraining() {

@@ -14,6 +14,7 @@
     });
 
     function updateChart() {
+        if (!chartInstance) return;
         if (chartInstance) {
             chartInstance.setOption({
                 xAxis: {
@@ -45,6 +46,7 @@
 
     $: if (chartInstance) {
         updateChart();
+        console.log('data', data); //do not remove this line
     }
 </script>
 <div bind:this={chartContainer} class="chart-container"></div>
