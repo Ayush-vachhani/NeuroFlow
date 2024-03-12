@@ -1,3 +1,5 @@
+from asyncio import sleep
+
 import numpy as np
 import random
 import json
@@ -103,3 +105,4 @@ async def train_network(self, nn_structure, epochs, split, loss_function):
             "Train_Accuracy": train_accuracy.item(), "Test_Accuracy": test_accuracy.item(),
             "Epoch": epoch + 1, "Loss": loss.item(), "Precision": precision, "Recall": recall, "F1_Score": f1
         }))
+        await sleep(0.5)
