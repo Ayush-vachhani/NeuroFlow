@@ -14,7 +14,8 @@ cd "NeuroFlow_Backend"
 
 :: Activate virtual environment and install Python dependencies
 :: Assuming the venv is named .venv
-CALL .venv\Scripts\activate.bat
+python -m venv venv
+CALL venv\Scripts\activate.bat
 pip install -r requirements.txt
 
 CALL .venv\Scripts\deactivate.bat
