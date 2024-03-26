@@ -17,7 +17,8 @@ cd "NeuroFlow_Backend" || exit
 
 # Activate virtual environment and install Python dependencies
 # Assuming the venv is located at .venv
-source .venv/bin/activate
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
 # Deactivate virtual environment

@@ -17,7 +17,6 @@ cd "NeuroFlow_Backend"
 CALL .venv\Scripts\activate.bat
 pip install -r requirements.txt
 
-:: Deactivate virtual environment
 CALL .venv\Scripts\deactivate.bat
 
 echo Setup completed.
