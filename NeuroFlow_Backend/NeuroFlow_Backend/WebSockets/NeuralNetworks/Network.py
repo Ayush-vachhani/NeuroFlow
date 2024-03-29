@@ -13,7 +13,7 @@ from NeuroFlow_Backend.WebSockets.scikit_learn.preprocessing import preprocess_d
 from .loss import calculate_binary_accuracy, loss_functions_map
 from sklearn.metrics import precision_score, recall_score, f1_score
 
-df = pd.read_csv('Data/Titanic/train.csv')
+df = pd.read_csv('Data/titanic.csv')
 X, y = preprocess_data(df)
 
 

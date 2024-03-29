@@ -24,7 +24,7 @@ def preprocess_data(df, is_train=True):
 
 
 async def train_and_evaluate_classifier(self, classifier, params):
-    df = pd.read_csv('Data/Titanic/train.csv')
+    df = pd.read_csv('Data/titanic.csv')
     np.random.seed(42)
     # Preprocess the data
     X, Y = preprocess_data(df)
