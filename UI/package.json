@@ -40,7 +40,7 @@
     "dependencies": {
         "@svgdotjs/svg.js": "^3.2.0",
         "@testing-library/svelte": "^4.1.0",
-        "axios": "^1.6.5",
+        "axios": "^1.6.7",
         "echarts": "^5.4.3"
     }
 }
