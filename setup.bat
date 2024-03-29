@@ -18,6 +18,6 @@ python -m venv venv
 CALL venv\Scripts\activate.bat
 pip install -r requirements.txt
 
-CALL .venv\Scripts\deactivate.bat
+CALL venv\Scripts\deactivate.bat
 
 echo Setup completed.
