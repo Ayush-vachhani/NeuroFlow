@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types';
+import type { PageLoad } from '../../../../.svelte-kit/types/src/routes';
 import axios from 'axios';
 
 export const load: PageLoad = async ({params}) => {

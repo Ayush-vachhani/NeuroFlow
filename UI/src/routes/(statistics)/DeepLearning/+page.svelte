@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {urls} from "$lib/stores/urls";
+    import {urls} from "../../../stores/urls";
     import Rectangle from "$lib/SVG/Rectangle.svelte";
-    import WebSocketComponent from "$lib/WebSocketHandler/WebSocketComponent.svelte";
+    import WebSocketComponent from "$lib/WebSocketComponent.svelte";
     import LinePlot from "$lib/Plots/LinePlot.svelte";
 
     let HiddenLayers = [{No_of_Circles: 4}, {No_of_Circles: 4}];
