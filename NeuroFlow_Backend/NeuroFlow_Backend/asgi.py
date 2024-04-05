@@ -6,7 +6,6 @@ from django.urls import path
 
 from NeuroFlow_Backend.WebSockets.scikit_learn import consumer
 from NeuroFlow_Backend.WebSockets.NeuralNetworks import trainer
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NeuroFlow_Backend.settings')
 
 websocket_urlpatterns = [

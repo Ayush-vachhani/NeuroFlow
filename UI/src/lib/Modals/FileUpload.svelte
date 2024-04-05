@@ -32,7 +32,7 @@
         else if (selected_file){
             setCurrentFile(selected_file);
         }
-        dispatch('close', {})
+        // dispatch('close', {})
     }
 </script>
 
