@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from .models import FileData
-# Register your models here.
-admin.site.register(FileData)
+# from .models import PerFileData
+# admin.site.register(PerFileData)
 

@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import SimpleImputer
 
-from apis.models import FileData
+# from apis.models import PerFileData
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = os.path.join(BASE_DIR, 'Data')
@@ -46,13 +46,13 @@ class FileListView(GenericAPIView):
         file_name = request.data.get('file_name', None)
         if not file_name:
             return JsonResponse({'error': 'Missing file_name parameter'}, status=400)
-
-        try:
-            data_entry = FileData.objects.get(filename=file_name)
-            return JsonResponse(data_entry.data_dict, status=200)
-
-        except FileData.DoesNotExist:
-            data_path = os.path.join(DATA_DIR, file_name)
+        data_path = os.path.join(DATA_DIR, file_name)
+        # try:
+        #     data_entry = PerFileData.objects.get(filename=file_name)
+        #     return JsonResponse(data_entry.data_dict, status=200)
+        #
+        # except PerFileData.DoesNotExist:
+        #     data_path = os.path.join(DATA_DIR, file_name)
         try:
             df = pd.read_csv(data_path)
             imputer = SimpleImputer(strategy='most_frequent')
