@@ -12,6 +12,10 @@ declare global {
 		name: string;
 		value: string;
 	}
+	interface DisplayData {
+		sample_data: object;
+		column_sum: object;
+	}
 }
 
 export {Flowbite_Select};
