@@ -3,8 +3,8 @@ name: Django CI
 on:
   push:
     branches: [ "main" ]
-    # paths:
-    #   - "NeuroFlow_Backend/apis/**"
+    paths:
+      - "NeuroFlow_Backend/apis/**"
 
 jobs:
   build:
