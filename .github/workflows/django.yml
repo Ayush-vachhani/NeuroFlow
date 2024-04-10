@@ -3,6 +3,8 @@ name: Django CI
 on:
   push:
     branches: [ "main" ]
+    # paths:
+    #   - "NeuroFlow_Backend/apis/**"
 
 jobs:
   build:
@@ -11,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        python-version: [3.10.14, 3.9, 3.8]
+        python-version: [3.10.12, 3.9, 3.8]
 
     steps:
     - uses: actions/checkout@v3
