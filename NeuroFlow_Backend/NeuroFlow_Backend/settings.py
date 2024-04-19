@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%pd))4v94=lu-*69vr-s6q6)-=!k9fz1&zjuy1)oyxig-mmsdt'
 
 DEBUG = True
-
+SITE_ID = 1
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 INSTALLED_APPS = [
@@ -18,6 +18,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+        'django.contrib.sites', # must
+    'allauth', # must
+    'allauth.account', # must
+    'allauth.socialaccount', # must
+    'allauth.socialaccount.providers.google', # new
     'rest_framework',
     'channels',
     'corsheaders',
@@ -33,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'NeuroFlow_Backend.urls'
