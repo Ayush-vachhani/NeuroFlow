@@ -22,11 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-        'django.contrib.sites', # must
-    'allauth', # must
-    'allauth.account', # must
-    'allauth.socialaccount', # must
-    'allauth.socialaccount.providers.google', # new
+    'django.contrib.sites', # must
     'rest_framework',
     'channels',
     'corsheaders',

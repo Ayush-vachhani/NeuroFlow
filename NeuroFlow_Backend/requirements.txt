@@ -146,3 +146,5 @@ webencodings==0.5.1
 websocket-client==1.7.0
 widgetsnbextension==4.0.10
 zope.interface==6.2
+python-dotenv==1.0.1
+djangorestframework-simplejwt
