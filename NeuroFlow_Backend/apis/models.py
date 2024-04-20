@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 import json
 
 
@@ -9,6 +11,7 @@ class FileData(models.Model):
 
     def __str__(self):
         return self.filename
+<<<<<<< HEAD
 
 
 class User(models.Model):
@@ -20,3 +23,5 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+=======
+>>>>>>> merge_branch
