@@ -3,7 +3,6 @@ from rest_framework.generics import GenericAPIView
 import os
 from pathlib import Path
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import SimpleImputer
 
 # from apis.models import PerFileData
@@ -79,8 +78,3 @@ class FileListView(GenericAPIView):
         except Exception as e:
             print(e)
             return JsonResponse({'error': str(e)}, status=500)
-        
-
-
-
-        
